@@ -52,5 +52,3 @@ with st.expander("Here you can try our Image Captoning Program"):
   
   else:
     st.write('not pressed yet')
-      
-
