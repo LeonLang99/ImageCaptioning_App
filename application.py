@@ -21,12 +21,12 @@ z.extractall("./Flickr")
 newpath = r'Imagess/' 
 if not os.path.exists(newpath):
     os.makedirs(newpath)
-    source_dir = 'Flickr/Flicker8k_Dataset'
-    target_dir = 'Images'
-    file_names = os.listdir(source_dir)
+source_dir = 'Flickr/Flicker8k_Dataset'
+target_dir = 'Images'
+file_names = os.listdir(source_dir)
     
-    for file_name in file_names:
-        shutil.move(os.path.join(source_dir, file_name), target_dir)
+for file_name in file_names:
+    shutil.move(os.path.join(source_dir, file_name), target_dir)
         
         
 folder = 'Flickr'
