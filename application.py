@@ -6,6 +6,7 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 import numpy as np
 import matplotlib.pyplot as plt
 import pickle
+from random import *
 
 features = pickle.load(open("images1.pkl", "rb"))
 model = load_model('model_9.h5')
