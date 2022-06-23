@@ -18,7 +18,7 @@ print(r.ok)
 z = zipfile.ZipFile(io.BytesIO(r.content))
 z.extractall("./Flickr")
 
-images = "FLickr/"
+images = "FLickr/Flicker8k_Dataset"
 max_length = 33
 words_to_index = pickle.load(open("words.pkl", "rb"))
 index_to_words = pickle.load(open("words1.pkl", "rb"))
