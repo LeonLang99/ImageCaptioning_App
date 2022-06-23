@@ -18,12 +18,11 @@ if not os.path.exists(os.path.abspath('.') + image_folder):
                                       cache_subdir=os.path.abspath('.'),
                                       origin='https://drive.google.com/uc?export=download&id=1E8Qb_WPLg3D1Rj-iBHv6MfxtVs1Z3E-U',
                                       extract=True)
-  PATH = os.path.dirname(image_zip) + image_folder
+  images = os.path.dirname(image_zip) + image_folder
   os.remove(image_zip)
 else:
-  PATH = os.path.abspath('.') + image_folder
+  images = os.path.abspath('.') + image_folder
 
-images = "Images/"
 max_length = 33
 words_to_index = pickle.load(open("words.pkl", "rb"))
 index_to_words = pickle.load(open("words1.pkl", "rb"))
