@@ -47,10 +47,9 @@ with st.expander("Our vision..."):
   
 with st.expander("Here you can try our Image Captoning Program"):
   st.write("Please upload an image press the following Button.")
-  pic = st.file_uploader("Choose a file")
+  image = st.file_uploader("Choose a file")
   if st.button('Start now'):
-    image = [pic].reshape((1,2048))
-    x = plt.imread(images+pic)
+    x = plt.imread(image)
     plt.imshow(x)
     plt.show()
     print("Caption:", Image_Caption(image))
