@@ -52,3 +52,10 @@ with st.expander("Here you can try our Image Captoning Program"):
     st.balloons()
   else:
      st.write('not pressed yet')
+
+features = pickle.load(open("images1.pkl", "rb"))
+model = load_model('model_9.h5')
+max_length = 33
+words_to_index = pickle.load(open("words.pkl", "rb"))
+index_to_words = pickle.load(open("words1.pkl", "rb"))
+
