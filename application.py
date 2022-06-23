@@ -18,7 +18,7 @@ print(r.ok)
 z = zipfile.ZipFile(io.BytesIO(r.content))
 z.extractall("./Flickr")
 
-newpath = r'Imagess/' 
+newpath = r'Images/' 
 if not os.path.exists(newpath):
     os.makedirs(newpath)
 source_dir = 'Flickr/Flicker8k_Dataset'
