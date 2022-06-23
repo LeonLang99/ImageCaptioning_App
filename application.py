@@ -80,7 +80,7 @@ with st.expander("Here you can try our Image Captoning Program"):
   else:
      st.write('not pressed yet')
   st.write("Or try it with an image and press the following Button.")
-  if st.button('Start now'):
+  if st.button('random picture'):
        z = randint(1, 39)
        pic = list(features.keys())[z]
        image = features[pic].reshape((1,2048))
