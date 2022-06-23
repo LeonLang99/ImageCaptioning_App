@@ -6,23 +6,17 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 import numpy as np
 import matplotlib.pyplot as plt
 import pickle
-import os
+import requests, zipfile, io
 from random import *
 
 features = pickle.load(open("images1.pkl", "rb"))
 model = load_model('model_9.h5')
+URL = "https://drive.google.com/uc?export=download&id=1E8Qb_WPLg3D1Rj-iBHv6MfxtVs1Z3E-U"
 
-image_folder = '/Images/'
-if not os.path.exists(os.path.abspath('.') + image_folder):
-  image_zip = tf.keras.utils.get_file('archive.zip',
-                                      cache_subdir=os.path.abspath('.'),
-                                      origin='https://drive.google.com/uc?export=download&id=1E8Qb_WPLg3D1Rj-iBHv6MfxtVs1Z3E-U',
-                                      extract=True)
-  images = os.path.dirname(image_zip) + image_folder
-  os.remove(image_zip)
-else:
-  images = os.path.abspath('.') + image_folder
-
+r = requests.get(URL)
+z = zipfile.ZipFile(io.BytesIO(r.content))
+z.extractall("/Images")
+images = "Images/"
 max_length = 33
 words_to_index = pickle.load(open("words.pkl", "rb"))
 index_to_words = pickle.load(open("words1.pkl", "rb"))
