@@ -9,6 +9,7 @@ import pickle
 
 features = pickle.load(open("images1.pkl", "rb"))
 model = load_model('model_9.h5')
+images = "Images/"
 max_length = 33
 words_to_index = pickle.load(open("words.pkl", "rb"))
 index_to_words = pickle.load(open("words1.pkl", "rb"))
@@ -78,6 +79,13 @@ with st.expander("Here you can try our Image Captoning Program"):
     print("Caption:", Image_Caption(image))
   else:
      st.write('not pressed yet')
-   
-  
+  st.write("Or try it with an image and press the following Button.")
+     if st.button('Start now'):
+        z = randint(1, 39)
+        pic = list(features.keys())[z]
+        image = features[pic].reshape((1,2048))
+        x = plt.imread(images+pic)
+        plt.imshow(x)
+        plt.show()
+        print("Caption:", Image_Caption(image))
 
