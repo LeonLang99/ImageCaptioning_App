@@ -111,7 +111,7 @@ with st.expander("Our vision..."):
 with st.expander("Here you can try our Image Captoning Program"): 
   st.write("Try it with a random image by pressing the following Button.")
   if st.button('random picture'):
-       z = randint(1, 100)
+       z = randint(1, 9000)
        pic = list(features.keys())[z]
        image = features[pic].reshape((1,2048))
        x = plt.imread(images+pic)
