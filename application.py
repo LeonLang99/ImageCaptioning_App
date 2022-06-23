@@ -80,12 +80,12 @@ with st.expander("Here you can try our Image Captoning Program"):
   else:
      st.write('not pressed yet')
   st.write("Or try it with an image and press the following Button.")
-     if st.button('Start now'):
-        z = randint(1, 39)
-        pic = list(features.keys())[z]
-        image = features[pic].reshape((1,2048))
-        x = plt.imread(images+pic)
-        plt.imshow(x)
-        plt.show()
-        print("Caption:", Image_Caption(image))
+  if st.button('Start now'):
+       z = randint(1, 39)
+       pic = list(features.keys())[z]
+       image = features[pic].reshape((1,2048))
+       x = plt.imread(images+pic)
+       plt.imshow(x)
+       plt.show()
+       print("Caption:", Image_Caption(image))
 
