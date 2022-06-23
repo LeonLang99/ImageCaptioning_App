@@ -108,8 +108,7 @@ with st.expander("Our vision..."):
    st.subheader("About our data…")
    st.write("Our dataset consists of X images which are randomly sorted. For the training we will not use the whole data set, because it has an enormous storage capacity (~ 240TB of data).Therefore, in advantage of time and costs we will use between 500-1000 pictures to train our data. We will delimit our data set to the topic 'public and urban ways of travel', as we think this is a suitable domain to start with when training your data.")
   
-with st.expander("Here you can try our Image Captoning Program")
-  
+with st.expander("Here you can try our Image Captoning Program"): 
   st.write("Try it with a random image by pressing the following Button.")
   if st.button('random picture'):
        z = randint(1, 100)
