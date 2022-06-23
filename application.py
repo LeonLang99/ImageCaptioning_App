@@ -14,7 +14,7 @@ model = load_model('model_9.h5')
 
 image_folder = '/Images/'
 if not os.path.exists(os.path.abspath('.') + image_folder):
-  image_zip = tf.keras.utils.get_file('train2014.zip',
+  image_zip = tf.keras.utils.get_file('archive.zip',
                                       cache_subdir=os.path.abspath('.'),
                                       origin='https://drive.google.com/uc?export=download&id=1E8Qb_WPLg3D1Rj-iBHv6MfxtVs1Z3E-U',
                                       extract=True)
