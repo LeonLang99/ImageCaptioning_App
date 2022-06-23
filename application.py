@@ -47,9 +47,13 @@ with st.expander("Our vision..."):
   
 with st.expander("Here you can try our Image Captoning Program"):
   st.write("Please upload an image press the following Button.")
-  image_url = st.file_uploader("Choose a file")
+  pic = st.file_uploader("Choose a file")
   if st.button('Start now'):
-    st.balloons()
+    image = features[pic].reshape((1,2048))
+    x = plt.imread(images+pic)
+    plt.imshow(x)
+    plt.show()
+    print("Caption:", Image_Caption(image))
   else:
      st.write('not pressed yet')
    
@@ -58,6 +62,11 @@ model = load_model('model_9.h5')
 max_length = 33
 words_to_index = pickle.load(open("words.pkl", "rb"))
 index_to_words = pickle.load(open("words1.pkl", "rb"))
+
+
+
+
+
 
 def Image_Caption(picture):
     in_text = 'startseq'
@@ -74,3 +83,5 @@ def Image_Caption(picture):
     final = final[1:-1]
     final = ' '.join(final)
     return final
+  
+
