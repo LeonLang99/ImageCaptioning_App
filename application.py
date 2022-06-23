@@ -49,3 +49,6 @@ with st.expander("Here you can try our Image Captoning Program"):
   st.write("Please upload an image press the following Button.")
   image_url = st.file_uploader("Choose a file")
   if st.button('Start now'):
+    st.balloons()
+  else:
+     st.write('not pressed yet')
