@@ -6,7 +6,7 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 import numpy as np
 import matplotlib.pyplot as plt
 import pickle
-from random import *
+import os
 
 features = pickle.load(open("images1.pkl", "rb"))
 model = load_model('model_9.h5')
@@ -88,8 +88,7 @@ with st.expander("Here you can try our Image Captoning Program"):
   else:
      st.write('not pressed yet')
   st.write("Or try it with an image and press the following Button.")
-  if st.button('random picture'):
-       z = randint(1, 39)
+  if st.button('random picture')
        pic = list(features.keys())[z]
        image = features[pic].reshape((1,2048))
        x = plt.imread(images+pic)
