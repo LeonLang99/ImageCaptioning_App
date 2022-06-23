@@ -29,7 +29,7 @@ if not os.path.exists(newpath):
     for file_name in file_names:
         shutil.move(os.path.join(source_dir, file_name), target_dir)
     
-folder = '/Flickr'
+folder = 'Flickr'
 for filename in os.listdir(folder):
     file_path = os.path.join(folder, filename)
     try:
