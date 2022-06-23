@@ -13,7 +13,7 @@ features = pickle.load(open("images1.pkl", "rb"))
 model = load_model('model_9.h5')
 r = requests.get("https://drive.google.com/uc?export=download&id=1E8Qb_WPLg3D1Rj-iBHv6MfxtVs1Z3E-U", stream=True)
 r.ok
-z = zipfile.ZipFile(StringIO.StringIO(r.content))
+z = zipfile.ZipFile(io.BytesIO(r.content))
 z.extractall("/Images")
 
 images = "Images"
