@@ -1,3 +1,13 @@
+import streamlit as st
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+import numpy as np
+import matplotlib.pyplot as plt
+import pickle
+
+
 st.title('Image Captioning Group 13')
 
 with st.expander("The Team"):
@@ -41,4 +51,6 @@ with st.expander("Here you can try our Image Captoning Program"):
   if st.button('Start now'):
   
   else:
-     st.write('not pressed yet')
+    st.write('not pressed yet')
+      
+
