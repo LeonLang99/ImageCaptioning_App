@@ -6,7 +6,7 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 import numpy as np
 import matplotlib.pyplot as plt
 import pickle
-import requests, zipfile, IO
+import requests, zipfile, io
 from random import *
 
 features = pickle.load(open("images1.pkl", "rb"))
