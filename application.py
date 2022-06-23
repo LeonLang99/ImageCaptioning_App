@@ -52,7 +52,7 @@ with st.expander("Here you can try our Image Captoning Program"):
     st.balloons()
   else:
      st.write('not pressed yet')
-@st.cache
+   
 features = pickle.load(open("images1.pkl", "rb"))
 model = load_model('model_9.h5')
 max_length = 33
