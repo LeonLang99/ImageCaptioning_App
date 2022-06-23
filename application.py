@@ -16,11 +16,11 @@ def Load_Images():
   z = zipfile.ZipFile(io.BytesIO(r.content))
   z.extractall("./Flickr")
   
-def Load_Model():
-  features = pickle.load(open("images1.pkl", "rb"))
-  model = load_model('model_9.h5')
-  words_to_index = pickle.load(open("words.pkl", "rb"))
-  index_to_words = pickle.load(open("words1.pkl", "rb"))
+  
+features = pickle.load(open("images1.pkl", "rb"))
+model = load_model('model_9.h5')
+words_to_index = pickle.load(open("words.pkl", "rb"))
+index_to_words = pickle.load(open("words1.pkl", "rb"))
   
   
 def Make_Folder():
@@ -50,7 +50,6 @@ def Make_Folder():
 if not os.path.exists("Images"):
     Load_Images()
     Make_Folder()
-    Load_Model()
     
 images = "Images/"
 max_length = 33
