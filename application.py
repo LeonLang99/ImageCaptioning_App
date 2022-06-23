@@ -6,21 +6,17 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 import numpy as np
 import matplotlib.pyplot as plt
 import pickle
-import requests, zipfile, io
+import requests, zipfile, StringIO
 from random import *
 
 features = pickle.load(open("images1.pkl", "rb"))
 model = load_model('model_9.h5')
-URL = "https://drive.google.com/uc?export=download&id=1E8Qb_WPLg3D1Rj-iBHv6MfxtVs1Z3E-U"
-
-r = requests.get(URL)
-z = zipfile.ZipFile(io.BytesIO(r.content))
+r = requests.get("https://drive.google.com/uc?export=download&id=1E8Qb_WPLg3D1Rj-iBHv6MfxtVs1Z3E-U", stream=True)
+r.ok
+z = zipfile.ZipFile(StringIO.StringIO(r.content))
 z.extractall("/Images")
-images = "Images/"
-max_length = 33
-words_to_index = pickle.load(open("words.pkl", "rb"))
-index_to_words = pickle.load(open("words1.pkl", "rb"))
 
+images = "Images"
 def Image_Caption(picture):
     in_text = 'startseq'
     for i in range(max_length):
