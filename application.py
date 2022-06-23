@@ -7,6 +7,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pickle
 import os
+from random import *
 
 features = pickle.load(open("images1.pkl", "rb"))
 model = load_model('model_9.h5')
@@ -89,6 +90,7 @@ with st.expander("Here you can try our Image Captoning Program"):
      st.write('not pressed yet')
   st.write("Or try it with an image and press the following Button.")
   if st.button('random picture')
+       x = randint(1, 100)
        pic = list(features.keys())[z]
        image = features[pic].reshape((1,2048))
        x = plt.imread(images+pic)
