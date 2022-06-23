@@ -18,29 +18,7 @@ print(r.ok)
 z = zipfile.ZipFile(io.BytesIO(r.content))
 z.extractall("./Flickr")
 
-newpath = r'Images/' 
-if not os.path.exists(newpath):
-    os.makedirs(newpath)
-source_dir = 'Flickr/Flicker8k_Dataset'
-target_dir = 'Images'
-file_names = os.listdir(source_dir)
-    
-for file_name in file_names:
-    shutil.move(os.path.join(source_dir, file_name), target_dir)
-        
-        
-folder = 'Flickr'
-for filename in os.listdir(folder):
-    file_path = os.path.join(folder, filename)
-    try:
-        if os.path.isfile(file_path) or os.path.islink(file_path):
-            os.unlink(file_path)
-        elif os.path.isdir(file_path):
-            shutil.rmtree(file_path)
-    except Exception as e:
-        print('Failed to delete %s. Reason: %s' % (file_path, e))
-
-images = "Images/"
+images = "FLickr/"
 max_length = 33
 words_to_index = pickle.load(open("words.pkl", "rb"))
 index_to_words = pickle.load(open("words1.pkl", "rb"))
