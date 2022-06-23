@@ -52,10 +52,25 @@ with st.expander("Here you can try our Image Captoning Program"):
     st.balloons()
   else:
      st.write('not pressed yet')
-
+@st.cache
 features = pickle.load(open("images1.pkl", "rb"))
 model = load_model('model_9.h5')
 max_length = 33
 words_to_index = pickle.load(open("words.pkl", "rb"))
 index_to_words = pickle.load(open("words1.pkl", "rb"))
 
+def Image_Caption(picture):
+    in_text = 'startseq'
+    for i in range(max_length):
+        sequence = [words_to_index[w] for w in in_text.split() if w in words_to_index]
+        sequence = pad_sequences([sequence], maxlen=max_length)
+        yhat = model.predict([picture,sequence], verbose=0)
+        yhat = np.argmax(yhat)
+        word = index_to_words[yhat]
+        in_text += ' ' + word
+        if word == 'endseq':
+            break
+    final = in_text.split()
+    final = final[1:-1]
+    final = ' '.join(final)
+    return final
