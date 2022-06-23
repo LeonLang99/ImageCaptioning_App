@@ -21,7 +21,7 @@ z.extractall("./Flickr")
 newpath = 'Images/' 
 if not os.path.exists(newpath):
     os.makedirs(newpath)
-    source_dir = '/FLickr/Flicker8k_Dataset'
+    source_dir = '/Flickr/Flicker8k_Dataset'
     target_dir = 'Images/'
     
     file_names = os.listdir(source_dir)
