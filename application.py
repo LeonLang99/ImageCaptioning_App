@@ -7,6 +7,21 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pickle
 
+def Image_Caption(picture):
+    in_text = 'startseq'
+    for i in range(max_length):
+        sequence = [words_to_index[w] for w in in_text.split() if w in words_to_index]
+        sequence = pad_sequences([sequence], maxlen=max_length)
+        yhat = model.predict([picture,sequence], verbose=0)
+        yhat = np.argmax(yhat)
+        word = index_to_words[yhat]
+        in_text += ' ' + word
+        if word == 'endseq':
+            break
+    final = in_text.split()
+    final = final[1:-1]
+    final = ' '.join(final)
+    return final
 
 st.title('Image Captioning Group 13')
 
