@@ -10,15 +10,19 @@ import requests, zipfile, io
 import os, shutil
 from random import *
 
-features = pickle.load(open("images1.pkl", "rb"))
-model = load_model('model_9.h5')
-
 def Load_Images():
   r = requests.get("https://github.com/jbrownlee/Datasets/releases/download/Flickr8k/Flickr8k_Dataset.zip", stream=True)
   print(r.ok)
   z = zipfile.ZipFile(io.BytesIO(r.content))
   z.extractall("./Flickr")
-
+  
+def Load_Model():
+  features = pickle.load(open("images1.pkl", "rb"))
+  model = load_model('model_9.h5')
+  words_to_index = pickle.load(open("words.pkl", "rb"))
+  index_to_words = pickle.load(open("words1.pkl", "rb"))
+  
+  
 def Make_Folder():
   newpath = 'Images/' 
   if not os.path.exists(newpath):
@@ -42,14 +46,15 @@ def Make_Folder():
               shutil.rmtree(file_path)
      except Exception as e:
           print('Failed to delete %s. Reason: %s' % (file_path, e))
+        
 if not os.path.exists("Images"):
-    Load_images()
+    Load_Images()
     Make_Folder()
+    Load_Model()
     
 images = "Images/"
 max_length = 33
-words_to_index = pickle.load(open("words.pkl", "rb"))
-index_to_words = pickle.load(open("words1.pkl", "rb"))
+
 
 def Image_Caption(picture):
     in_text = 'startseq'
