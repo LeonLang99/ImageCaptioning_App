@@ -56,7 +56,7 @@ if not os.path.exists("Images"):
     Make_Folder()
     
 images = "Images/"
-max_length = 40
+max_length = 35
 
 
 def Image_Caption(picture):
