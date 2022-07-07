@@ -80,6 +80,11 @@ with st.expander("Introduction"):
   
 with st.expander("Solution"):
   st.write("Most probably you would say “A dog running on a field”, some may say “a dog with white and black spots” and others might say “a dog on a grass and some yellow flowers”.")
+  st.write("Definitely all of these captions are correct for this image and there may be some more as well. But the point we want to make is that it is so easy for us, as human beings, to just have a look at a picture and describe it in an appropriate language.")
+  st.write("But, can you write a computer program that takes an image as input and produces a relevant caption as output?")
+  st.image("https://img.freepik.com/premium-vector/cute-funny-think-emoji-smile-face-with-question-mark-vector-flat-line-doodle-cartoon-kawaii-character-illustration-icon-isolated-white-background-yellow-emoji-circle-think-character-concept_92289-3170.jpg")
+  
+  
   
   
   
