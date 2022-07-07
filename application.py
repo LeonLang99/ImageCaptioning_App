@@ -60,9 +60,7 @@ max_length = 33
 
 
 def Image_Caption(picture):
-   # in_text = 'startseq'
-    
-      
+    in_text = 'startseq'    
     for i in range(max_length+10):
         sequence = [words_to_index[w] for w in in_text.split() if w in words_to_index]
         sequence = pad_sequences([sequence], maxlen=max_length)
@@ -75,7 +73,6 @@ def Image_Caption(picture):
     final = in_text.split()
     final = final[1:-1]
     final = ' '.join(final)
-    st.spinner(text='This may take a moment...')
     return final
 
 st.title('Image Captioning Group 13')
