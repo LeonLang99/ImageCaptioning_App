@@ -318,6 +318,14 @@ with st.expander("jetzt wirds wild"):
   if user_choice == 'Upload your own picture':
     picture = st.file_uploader('', type=['jpg'])
     if picture != None:
-        st.write("Caption:", Image_Caption(image))
-               
+        st.write("Caption:", Image_Caption(picture))
+    else
+      if st.button('random picture'):
+       st.balloons()
+       z = randint(1, 1000)
+       pic = list(features.keys())[z]
+       image = features[pic].reshape((1,2048))
+       x = plt.imread(images+pic)
+       st.image(x)
+       st.write("Caption:", Image_Caption(image))
     
