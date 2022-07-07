@@ -79,6 +79,16 @@ with st.expander("Introduction"):
  #with st.expander("Possible solution")
   st.write("Most probably you would say “A dog running on a field”, some may say “a dog with white and black spots” and others might say “a dog on a grass and some yellow flowers”. Definitely all of these captions are correct for this image and there may be some more as well. But the point we want to make is that it is so easy for us, as human beings, to just have a look at a picture and describe it in an appropriate language. But, can you write a computer program that takes an image as input and produces a relevant caption as output?")
 
+  
+  
+with st.ecpander("Data Understanding")
+  st.subheader("About or data...")
+  st.write("Our dataset consists of over 80000 images with at least 5 captions each, which are from the open-source dataset MS COCO and are randomly sorted. For the training we will not use the whole data set, because it has an enormous storage capacity.")
+  st.text("")
+  st.write("Therefore, in advantage of time and costs we only used ca. 8.000 pictures to train our data.")
+  st.text("")
+  st.write("We will not be delimiting our dataset in specific domains, as our purpose is not image classification, but image captioning, so it’s in our best interests to vary the image topics, so that we call achieve a high accuracy.")
+  
 with st.expander("Here you can try our Image Captoning Program"): 
   st.write("Try it with a random image by pressing the following Button.")
   if st.button('random picture'):
