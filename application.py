@@ -97,8 +97,8 @@ with st.expander("Data Understanding"):
   ''')
 with st.expander("Data Preperation"):
   st.header("Data Preperation")
-  st.subheader("About or data...") 
-  
+  st.write("Before starting training our model, we have to be sure our data is clean, correct, consistent has no redundancies. For the image part we made sure that our pictures have the same scale and size, but also that there are not turned upside-down. As previously mentioned, we have to deal with text as well, that’s why we performed some basic cleaning like lower casing all the words, removed special symbols like (like %, §, &, # etc.) and eliminated words which contain numbers (like “girl2”).") 
+ 
   st.subheader("Data Cleaning")
   st.write("DataCleaningTextHere")
 with st.expander("Here you can try our Image Captoning Program"):
