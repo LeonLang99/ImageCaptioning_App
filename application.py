@@ -302,6 +302,23 @@ with st.expander("Here you can try our Image Captoning Program"):
       
       
       
+      
+      
+      
+      
+      
+      
+ 
+from model import predict_step     
+      
+def gen_caption(picture):
+    st.image(picture)
+    st.subheader('Generated caption:')
+    with st.spinner(text='This may take a moment...'):
+        caption = predict_step([picture])
+    st.write(caption[0])
+      
+      
 with st.expander("jetzt wirds wild"):
 #user chooses between preuploaded picture or uploads one himself
   col1, col2, col3 = st.columns([0.5,1,0.5])
@@ -318,7 +335,7 @@ with st.expander("jetzt wirds wild"):
   if user_choice == 'Upload your own picture':
     picture = st.file_uploader('', type=['jpg'])
     if picture != None:
-        st.write("Caption:", Image_Caption(picture))
+        gen_caption(picture)
     else:
       if st.button('random picture'):
        st.balloons()
