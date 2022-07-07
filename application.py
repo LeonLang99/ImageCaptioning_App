@@ -78,8 +78,8 @@ with st.expander("Introduction"):
   st.write("But before starting, we have a question:  What do you see in the picture bellow?")
   st.image("https://futalis.de/wp-content/uploads/2020/07/contentbild-hund-fital-1.jpg")
   
-  with st.expander("Solution"):
-     st.write("Most probably you would say “A dog running on a field”, some may say “a dog with white and black spots” and others might say “a dog on a grass and some yellow flowers”.")
+with st.expander("Solution"):
+  st.write("Most probably you would say “A dog running on a field”, some may say “a dog with white and black spots” and others might say “a dog on a grass and some yellow flowers”.")
   
   
   
