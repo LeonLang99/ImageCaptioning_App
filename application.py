@@ -61,9 +61,9 @@ max_length = 33
 
 def Image_Caption(picture):
     in_text = 'startseq'    
-    for i in range(max_length+10):
+    for i in range(max_length):
         sequence = [words_to_index[w] for w in in_text.split() if w in words_to_index]
-        sequence = pad_sequences([sequence], maxlen=max_length)
+        sequence = pad_sequences([sequence], maxlen-10=max_length)
         yhat = model.predict([picture,sequence], verbose=0)
         yhat = np.argmax(yhat)
         word = index_to_words[yhat]
