@@ -292,10 +292,11 @@ with st.expander("Evaluation"):
    st.image("https://blog.forecast.it/hs-fs/hubfs/accuracy-precision.jpg?width=454&name=accuracy-precision.jpg&w=144")
    st.write("Accuracy: The ability of a measurement device to match the actual value of the quantity being measured.")
    st.write("Precision: The reproducibility of repeated measurements and a measure of their likely spread.")
-
+   st.subheader("Our Difficulties")
+   st.write("We evaluated our program based on the Accuracy/Precision model and we came to the conclusion that our model achieved a high Precision, but a moderate Accuracy. In the majority of cases the app can easily recognize what is in the picture, but unfortunately it does not describe the picture sufficiently enough. We also noticed a few more problems: Sometimes the sentence is not ended or the last word is left out. In addition, it often has problems to tell colors or genders apart.")
+    
 with st.expander("Here you can try our Image Captoning Program"):
   st.subheader("Here you can try our Image Captoning Program")
-  st.balloons()
   st.write("Try it with a random image by pressing the following Button.")
   if st.button('random picture'):
        
@@ -309,7 +310,7 @@ with st.expander("Here you can try our Image Captoning Program"):
 
       
       
-      
+  st.balloons()
       
       
       
