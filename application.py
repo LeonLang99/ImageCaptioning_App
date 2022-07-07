@@ -80,7 +80,29 @@ with st.expander("Introduction"):
  #with st.expander("Possible solution")
   st.write("Most probably you would say “A dog running on a field”, some may say “a dog with white and black spots” and others might say “a dog on a grass and some yellow flowers”. Definitely all of these captions are correct for this image and there may be some more as well. But the point we want to make is that it is so easy for us, as human beings, to just have a look at a picture and describe it in an appropriate language. But, can you write a computer program that takes an image as input and produces a relevant caption as output?")
 
+with st.expander("Solution"):
+  st.header("Solution")
+  st.write("Most probably you would say “A dog running on a field”, some may say “a dog with white and black spots” and others might say “a dog on a grass and some yellow flowers”.")
+  st.write("Definitely all of these captions are correct for this image and there may be some more as well. But the point we want to make is that it is so easy for us, as human beings, to just have a look at a picture and describe it in an appropriate language.")
+  st.write("But, can you write a computer program that takes an image as input and produces a relevant caption as output?")
+  st.image("https://img.freepik.com/premium-vector/cute-funny-think-emoji-smile-face-with-question-mark-vector-flat-line-doodle-cartoon-kawaii-character-illustration-icon-isolated-white-background-yellow-emoji-circle-think-character-concept_92289-3170.jpg")
   
+  
+with st.expander("Business Understanding"):
+  st.header("Business Understanding")
+  st.write("The upper question is what also determined us to analyse this problem and to develop a corresponding solution to it.")
+  st.image("https://iq.opengenus.org/content/images/2020/06/Machine-Caption.png")
+  st.subheader("Motivation")
+  st.write("First, we tried to understand how important this problem is to real world scenarios. Let’s see few applications where a solution to this problem can be very useful:")
+  st.write("Self-driving cars -Automatic driving is one of the biggest challenges and if we can properly caption the scene around the car, it can give a boost to the self-driving system.")
+  st.image("https://www.autonomousvehicleinternational.com/wp-content/uploads/2019/05/1.1-For-CapGemini-story.gif")
+  st.write("Support the blinds - We can create a product for the blind which will guide them travelling on the roads without the support of anyone else. We can do this by first converting the scene into text and then later the text to voice.")
+  st.image("https://media.istockphoto.com/photos/blind-man-crossing-a-street-picture-id1292075242?k=20&m=1292075242&s=612x612&w=0&h=CeztC1Y2erLKVZrnI1JoUf7DfskR9D1bb8933ul023w=")
+  st.write("Monitoring cameras-we can also generate relevant captions, then we can raise alarms as soon as there is some malicious activity going on somewhere. This could probably help reduce some crime and/or accidents.")
+  st.image("https://i.tribune.com.pk/media/images/552016-cameracctvsecurity-1369077101/552016-cameracctvsecurity-1369077101.jpg")
+  st.write("•	Automatic Captioning Apps - can help one to explore unknown things around you using only your phone’s camera which scans a real object converting that instant photo into a caption and telling you what this might be (example Google Lens).")
+  st.image("https://storage.googleapis.com/gweb-uniblog-publish-prod/images/lens_dog.max-1000x1000.png")
+   
   
 with st.expander("Data Understanding"):
   st.header("Data Understanding")
@@ -90,11 +112,7 @@ with st.expander("Data Understanding"):
   st.write("Therefore, in advantage of time and costs we only used ca. 8.000 pictures to train our data.")
   st.text("")
   st.write("We will not be delimiting our dataset in specific domains, as our purpose is not image classification, but image captioning, so it’s in our best interests to vary the image topics, so that we call achieve a high accuracy.")
-  st.code('''
   
-  #CODE LOUUULiiiLEIN
-  
-  ''')
 with st.expander("Data Preperation"):
   st.header("Data Preperation")
   
@@ -162,17 +180,113 @@ with st.expander("Data Modeling"):
   st.header("Data Modeling")
   st.write("The modeling technique we used is the CNN - Convolutional Neural Network within Deep Learning which is a type of artificial neural network that is widely used for image/object recognition and classification. The encoder-decoder architecture - where an input image is encoded into an intermediate representation of the information contained within the image and subsequently decoded into a descriptive text sequence - has also contributed to caption’s generation.")
   
+  
+with st.expander("Data Modeling"):
+  st.header("Data Modeling")
+  st.write("The modeling technique we used is the CNN - Convolutional Neural Network within Deep Learning which is a type of artificial neural network that is widely used for image/object recognition and classification. The encoder-decoder architecture - where an input image is encoded into an intermediate representation of the information contained within the image and subsequently decoded into a descriptive text sequence - has also contributed to caption’s generation.")
+  
   st.subheader("Model architecture")
-  st.code('''
+  st.write("Finally, let us define the LSTM and embedding layers to create our model architecture. For this model, we will make use of two inputs, namely the image vectors and the word embeddings of the captions, for making the predictions. The embedding vector is passed through an LSTM architecture which will learn how to make the appropriate word predictions. The image vector and the LSTM predictions are combined together as one unit and passed through some dense layers and a SoftMax activation function, which is equivalent to the size of the pre-defined vocabulary. ")
+  st.code(''' 
+  embeddings_index = {} # empty dictionary
+f = open('glove.6B.200d.txt', encoding="utf-8")
+
+for line in f:
+    values = line.split()
+    word = values[0]
+    coefs = np.asarray(values[1:], dtype='float32')
+    embeddings_index[word] = coefs
+f.close()
+print('Found %s word vectors.' % len(embeddings_index))
+
+embedding_dim = 200
+
+# Get 200-dim dense vector for each of the 10000 words in out vocabulary
+embedding_matrix = np.zeros((vocab_size, embedding_dim))
+
+for word, i in wordtoix.items():
+    #if i < max_words:
+    embedding_vector = embeddings_index.get(word)
+    if embedding_vector is not None:
+        # Words not found in the embedding index will be all zeros,
+        embedding_matrix[i] = embedding_vector
+        
+embedding_matrix.shape
+
+inputs1 = Input(shape=(2048,))
+fe1 = Dropout(0.5)(inputs1)
+fe2 = Dense(256, activation='relu')(fe1)
+
+inputs2 = Input(shape=(max_length,))
+se1 = Embedding(vocab_size, embedding_dim, mask_zero=True)(inputs2)
+se2 = Dropout(0.5)(se1)
+se3 = LSTM(256)(se2)
+
+decoder1 = add([fe2, se3])
+decoder2 = Dense(256, activation='relu')(decoder1)
+outputs = Dense(vocab_size, activation='softmax')(decoder2)
+
+model = Model(inputs=[inputs1, inputs2], outputs=outputs)
+model.summary()
+
   ''')
   st.subheader("Model training")
+  st.write("We trained our Model over 35 Epochs and with 3 pics per bath. We used a categorical cross-entropy loss function and the Adam optimizer.")
   st.code('''
+  model.layers[2].set_weights([embedding_matrix])
+model.layers[2].trainable = False
+
+model.compile(loss='categorical_crossentropy', optimizer='adam')
+
+epochs = 35
+number_pics_per_bath = 3
+steps = len(data2)//number_pics_per_bath
+
+features = pickle.load(open("images1.pkl", "rb"))
+
+# https://stackoverflow.com/questions/58352326/running-the-tensorflow-2-0-code-gives-valueerror-tf-function-decorated-functio
+
+tf.config.run_functions_eagerly(True)
+
+for i in range(epochs):
+    generator = data_generator(data2, features, wordtoix, max_length, number_pics_per_bath)
+    model.fit(generator, epochs=1, steps_per_epoch=steps, verbose=1)
+    model.save('model_' + str(i) + '.h5')
   ''')
+  
   st.subheader("Model testing")
+  st.write("The respective function that will take in the images, load their vectors, create word embedding, and utilize the saved model for making the appropriate predictions.")
   st.code('''
-  ''')
+  features = pickle.load(open("images1.pkl", "rb"))
+model = load_model('model_9.h5')
+images = "Images/"
+max_length = 33
+words_to_index = pickle.load(open("words.pkl", "rb"))
+index_to_words = pickle.load(open("words1.pkl", "rb"))
+
+def Image_Caption(picture):
+    in_text = 'startseq'
+    for i in range(max_length):
+        sequence = [words_to_index[w] for w in in_text.split() if w in words_to_index]
+        sequence = pad_sequences([sequence], maxlen=max_length)
+        yhat = model.predict([picture,sequence], verbose=0)
+        yhat = np.argmax(yhat)
+        word = index_to_words[yhat]
+        in_text += ' ' + word
+        if word == 'endseq':
+            break
+    final = in_text.split()
+    final = final[1:-1]
+    final = ' '.join(final)
+    return final
+  ''')  
+ 
   
-  
+with st.expander("Evaluation):    
+
+   st.write("Before proceeding to final deployment of the model, it is important to evaluate the model, and review the steps executed to construct the model, to be certain it properly achieves the business objectives. A key objective is to determine if there is some important business issue that has not been sufficiently considered.")
+   st.text("")
+   st.write("Model evaluation---True Positives/True Negatives---Accuracy ---Test Predictions---")
   
 with st.expander("Here you can try our Image Captoning Program"):
  
