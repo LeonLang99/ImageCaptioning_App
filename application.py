@@ -68,8 +68,8 @@ def Image_Caption(picture):
         yhat = np.argmax(yhat)
         word = index_to_words[yhat]
         in_text += ' ' + word
-        if word == 'endseq':
-            break
+        #if word == 'endseq':
+         #   break
     final = in_text.split()
     final = final[1:-1]
     final = ' '.join(final)
