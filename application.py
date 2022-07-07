@@ -97,7 +97,9 @@ with st.expander("Data Understanding"):
   ''')
 with st.expander("Data Preperation"):
   st.header("Data Preperation")
-  st.write("Our next step is to proceed with further pre-processing of the dataset and prepare the captions data by making some necessary changes. We will make sure that all the words in each of the sentences are converted to a lower case because we don't want the same word to be stored as two separate vectors during the computation of the problem. We will also remove words with a length of less than two to make sure that we remove irrelevant characters such as single letters and punctuations. The function and the code for completing this task is written as follows:") 
+  
+  st.subheader("Data Cleaning")
+st.write("Our next step is to proceed with further pre-processing of the dataset and prepare the captions data by making some necessary changes. We will make sure that all the words in each of the sentences are converted to a lower case because we don't want the same word to be stored as two separate vectors during the computation of the problem. We will also remove words with a length of less than two to make sure that we remove irrelevant characters such as single letters and punctuations. The function and the code for completing this task is written as follows:") 
   st.code('''
   
 # Cleanse and pre-process the data
@@ -121,12 +123,21 @@ def cleanse_data(data):
     return dict_2
 
 data2 = cleanse_data(data)
-print(len(data2))    ''')
+print(len(data2))    ''')+
   
   
-  st.write("After storing the cleansed information in 'data2' ")
-  st.subheader("Data Cleaning")
-  st.write("DataCleaningTextHere")
+  st.write("In our next step, we will create a dictionary to store the image files and their respective captions accordingly. We know that each image has an option of five different captions to choose from. We will define the .jpg image as the key with their five respective captions representing the values. We will split the values appropriately and store them in a dictionary. The following function can be written as follows:")
+  st.code(''' 
+
+def vocabulary(data2):
+    all_desc = set()
+    for key in data2.keys():
+        [all_desc.update(d.split()) for d in data2[key]]
+    return all_desc
+
+# summarize vocabulary
+vocabulary_data = vocabulary(data2)
+print(len(vocabulary_data)) ''')
   
   
   
