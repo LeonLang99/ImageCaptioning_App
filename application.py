@@ -282,7 +282,7 @@ def Image_Caption(picture):
   ''')  
  
   
-with st.expander("Evaluation):    
+with st.expander("Evaluation"):    
 
    st.write("Before proceeding to final deployment of the model, it is important to evaluate the model, and review the steps executed to construct the model, to be certain it properly achieves the business objectives. A key objective is to determine if there is some important business issue that has not been sufficiently considered.")
    st.text("")
