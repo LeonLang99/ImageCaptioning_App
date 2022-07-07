@@ -101,6 +101,11 @@ with st.expander("Business Understanding"):
   st.image("https://i.tribune.com.pk/media/images/552016-cameracctvsecurity-1369077101/552016-cameracctvsecurity-1369077101.jpg")
   st.write("•	Automatic Captioning Apps - can help one to explore unknown things around you using only your phone’s camera which scans a real object converting that instant photo into a caption and telling you what this might be (example Google Lens).")
   st.image("https://storage.googleapis.com/gweb-uniblog-publish-prod/images/lens_dog.max-1000x1000.png")
+  st.subheader("Goal")
+  st.write("Our main goal is our app to automatically generate captions, also known as textual descriptions, for random images. The dataset will be in the form [image → captions]. It will consist of input images and their corresponding output captions which have to be as precise as possible, but also short and concise. The caption generator will involve the dual techniques from computer vision - to first understand the content of the image, and a language model from the field of natural language processing to turn the understanding of the image into words in the right order and correct structure.")
+  st.subheader("Project Plan")
+  st.write("For a better overview and structure to our project, we followed the next steps:")
+  st.image("https://files.gitbook.com/v0/b/gitbook-legacy-files/o/assets%2F-MUgl8cG7yNhLCPnDv5x%2F-MY4KgeUGKq9SC1IR8Kr%2F-MY4PAID8A_U-333h3JC%2Fimage.png?alt=media&token=1082c6fe-0617-41df-b8f5-d71552200417")
   
 
 with st.expander("Data Understanding"):
