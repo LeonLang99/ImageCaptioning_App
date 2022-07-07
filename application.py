@@ -309,8 +309,7 @@ with st.expander("Here you can try our Image Captoning Program"):
        st.write("Caption:", Image_Caption(image))
 
       
-      
-  st.balloons()
+    
       
       
       
