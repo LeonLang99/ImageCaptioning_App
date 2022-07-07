@@ -138,7 +138,7 @@ def vocabulary(data2):
 # summarize vocabulary
 vocabulary_data = vocabulary(data2)
 print(len(vocabulary_data)) ''')
-  st.subheader("Pre-Processing the Images)
+  st.subheader("Pre-Processing the Images")
   st.write("Further we have used the Inception V3 transfer learning model to convert each of the respective images into their fixed vector size. The model makes use of the pre-trained weights on the image net to achieve the computation of the following task with relative ease. Once we finished the computation of pre-processing of the images, we have saved all these values in a pickle file that helped us to utilize these models separately during the prediction process. This process can be completed with the following code block:
 ")
   st.code('''
