@@ -74,6 +74,7 @@ def Image_Caption(picture):
 st.title('Image Captioning Group 13')
 
 with st.expander("Introduction"):
+  st.header("Introduction")
   st.write("Hello, we are Leon Lang, Jean Louis Fichtner and Loredana Bratu and we created this app as a part of our business informatics course. On this page you will have the opportunity to see how we developed step by step this project, what was our motivation and is our future vision. But before starting, we have a question:  What do you see in the picture bellow?")
   st.image("https://futalis.de/wp-content/uploads/2020/07/contentbild-hund-fital-1.jpg")
  #with st.expander("Possible solution")
@@ -82,6 +83,7 @@ with st.expander("Introduction"):
   
   
 with st.expander("Data Understanding"):
+  st.header("Data Understanding")
   st.subheader("About or data...")
   st.write("Our dataset consists of over 80000 images with at least 5 captions each, which are from the open-source dataset MS COCO and are randomly sorted. For the training we will not use the whole data set, because it has an enormous storage capacity.")
   st.text("")
@@ -89,7 +91,8 @@ with st.expander("Data Understanding"):
   st.text("")
   st.write("We will not be delimiting our dataset in specific domains, as our purpose is not image classification, but image captioning, so it’s in our best interests to vary the image topics, so that we call achieve a high accuracy.")
   
-with st.expander("Here you can try our Image Captoning Program"): 
+with st.expander("Here you can try our Image Captoning Program"):
+  st.ballons()
   st.write("Try it with a random image by pressing the following Button.")
   if st.button('random picture'):
        z = randint(1, 1000)
