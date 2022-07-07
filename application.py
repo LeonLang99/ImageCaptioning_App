@@ -117,7 +117,31 @@ with st.expander("Data Modeling"):
   st.write("The modeling technique we used is the CNN - Convolutional Neural Network within Deep Learning which is a type of artificial neural network that is widely used for image/object recognition and classification. The encoder-decoder architecture - where an input image is encoded into an intermediate representation of the information contained within the image and subsequently decoded into a descriptive text sequence - has also contributed to caption’s generation.")
   
   st.subheader("Model architecture")
-  st.code('''
+  st.code(''' 
+  embeddings_index = {} # empty dictionary
+f = open('glove.6B.200d.txt', encoding="utf-8")
+
+for line in f:
+    values = line.split()
+    word = values[0]
+    coefs = np.asarray(values[1:], dtype='float32')
+    embeddings_index[word] = coefs
+f.close()
+print('Found %s word vectors.' % len(embeddings_index))
+
+embedding_dim = 200
+
+# Get 200-dim dense vector for each of the 10000 words in out vocabulary
+embedding_matrix = np.zeros((vocab_size, embedding_dim))
+
+for word, i in wordtoix.items():
+    #if i < max_words:
+    embedding_vector = embeddings_index.get(word)
+    if embedding_vector is not None:
+        # Words not found in the embedding index will be all zeros,
+        embedding_matrix[i] = embedding_vector
+        
+embedding_matrix.shape
   ''')
   st.subheader("Model training")
   st.code('''
