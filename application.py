@@ -319,7 +319,7 @@ with st.expander("jetzt wirds wild"):
     picture = st.file_uploader('', type=['jpg'])
     if picture != None:
         st.write("Caption:", Image_Caption(picture))
-    else
+    else:
       if st.button('random picture'):
        st.balloons()
        z = randint(1, 1000)
