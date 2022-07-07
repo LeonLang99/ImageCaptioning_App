@@ -82,17 +82,23 @@ with st.expander("Introduction"):
 with st.expander("Solution"):
   st.header("Solution")
   st.write("Most probably you would say “A dog running on a field”, some may say “a dog with white and black spots” and others might say “a dog on a grass and some yellow flowers”.")
-  st.write("Definitely all of these captions are correct for this image and there may be some more as well. But the point we want to make is that it is so easy for us, as human beings, to just have a look at a picture and describe it in an appropriate language.")
+   st.write("Definitely all of these captions are correct for this image and there may be some more as well. But the point we want to make is that it is so easy for us, as human beings, to just have a look at a picture and describe it in an appropriate language.")
   st.write("But, can you write a computer program that takes an image as input and produces a relevant caption as output?")
   st.image("https://img.freepik.com/premium-vector/cute-funny-think-emoji-smile-face-with-question-mark-vector-flat-line-doodle-cartoon-kawaii-character-illustration-icon-isolated-white-background-yellow-emoji-circle-think-character-concept_92289-3170.jpg")
+  
   
 with st.expander("Business Understanding"):
   st.header("Business Understanding")
   st.write("The upper question is what also determined us to analyse this problem and to develop a corresponding solution to it.")
-  st.write("Definitely all of these captions are correct for this image and there may be some more as well. But the point we want to make is that it is so easy for us, as human beings, to just have a look at a picture and describe it in an appropriate language.")
-  st.write("But, can you write a computer program that takes an image as input and produces a relevant caption as output?")
-  st.image("https://img.freepik.com/premium-vector/cute-funny-think-emoji-smile-face-with-question-mark-vector-flat-line-doodle-cartoon-kawaii-character-illustration-icon-isolated-white-background-yellow-emoji-circle-think-character-concept_92289-3170.jpg")
-  
+  st.image("https://iq.opengenus.org/content/images/2020/06/Machine-Caption.png")
+  st.subheader("Motivation")
+  st.write("First, we tried to understand how important this problem is to real world scenarios. Let’s see few applications where a solution to this problem can be very useful:")
+  st.write("Self-driving cars -Automatic driving is one of the biggest challenges and if we can properly caption the scene around the car, it can give a boost to the self-driving system.")
+  st.image("https://www.autonomousvehicleinternational.com/wp-content/uploads/2019/05/1.1-For-CapGemini-story.gif")
+  st.write("Support the blinds - We can create a product for the blind which will guide them travelling on the roads without the support of anyone else. We can do this by first converting the scene into text and then later the text to voice.")
+  st.image("https://media.istockphoto.com/photos/blind-man-crossing-a-street-picture-id1292075242?k=20&m=1292075242&s=612x612&w=0&h=CeztC1Y2erLKVZrnI1JoUf7DfskR9D1bb8933ul023w=")
+  st.write("Monitoring cameras-we can also generate relevant captions, then we can raise alarms as soon as there is some malicious activity going on somewhere. This could probably help reduce some crime and/or accidents.")
+  st.image("https://i.tribune.com.pk/media/images/552016-cameracctvsecurity-1369077101/552016-cameracctvsecurity-1369077101.jpg")
   
   
 with st.expander("The Mission"):
