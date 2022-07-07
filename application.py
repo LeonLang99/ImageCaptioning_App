@@ -75,7 +75,7 @@ st.title('Image Captioning Group 13')
 
 with st.expander("Introduction"):
   st.write("Hello, we are Leon Lang, Jean Louis Fichtner and Loredana Bratu and we created this app as a part of our business informatics course. On this page you will have the opportunity to see how we developed step by step this project, what was our motivation and is our future vision. But before starting, we have a question:  What do you see in the picture bellow?")
-    st.image("https://futalis.de/wp-content/uploads/2020/07/contentbild-hund-fital-1.jpg")
+  st.image("https://futalis.de/wp-content/uploads/2020/07/contentbild-hund-fital-1.jpg")
   
   
   
