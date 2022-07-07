@@ -102,6 +102,17 @@ with st.expander("Business Understanding"):
   st.write("•	Automatic Captioning Apps - can help one to explore unknown things around you using only your phone’s camera which scans a real object converting that instant photo into a caption and telling you what this might be (example Google Lens).")
   st.image("https://storage.googleapis.com/gweb-uniblog-publish-prod/images/lens_dog.max-1000x1000.png")
   
+
+with st.expander("Data Understanding"):
+  st.header("Data Understanding")
+  st.subheader("About or data...")
+  st.write("Our dataset consists of over 80000 images with at least 5 captions each, which are from the open-source dataset MS COCO and are randomly sorted. For the training we will not use the whole data set, because it has an enormous storage capacity.")
+  st.text("")
+  st.write("Therefore, in advantage of time and costs we only used ca. 8.000 pictures to train our data.")
+  st.text("")
+  st.write("We will not be delimiting our dataset in specific domains, as our purpose is not image classification, but image captioning, so it’s in our best interests to vary the image topics, so that we call achieve a high accuracy.")
+   
+  
   
 with st.expander("The Mission"):
   st.write("The purpose of our app is to automatically describe an image with one or more natural language sentences. To generate textual descriptions of images we will use Machine Learning and Deep Learning Techniques.")
