@@ -294,10 +294,10 @@ with st.expander("Evaluation"):
    st.write("Precision: The reproducibility of repeated measurements and a measure of their likely spread.")
 
 with st.expander("Here you can try our Image Captoning Program"):
- 
+  st.balloons()
   st.write("Try it with a random image by pressing the following Button.")
   if st.button('random picture'):
-       st.balloons()
+       
        z = randint(1, 8000)
        st.write(z)
        pic = list(features.keys())[z]
