@@ -283,12 +283,12 @@ with st.expander("Evaluation"):
    st.write("Accuracy: The ability of a measurement device to match the actual value of the quantity being measured.")
    st.write("Precision: The reproducibility of repeated measurements and a measure of their likely spread.")
    st.subheader("Our Difficulties")
-   
+   st.write("We evaluated our program based on the Accuracy/Precision model and we came to the conclusion that our model achieved a high Precision, but a moderate Accuracy. In the majority of cases the app can easily recognize what is in the picture, but unfortunately it does not describe the picture sufficiently enough. We also noticed a few more problems: Sometimes the sentence is not ended or the last word is left out. In addition, it often has problems to tell colors or genders apart.")
     
     
     
-with st.expander("Here you can try our Image Captoning Program"): 
-  st.write("Try it with a random image by pressing the following Button.")
+with st.expander("Our Image Captoning Program"): 
+  st.write("You can try our Program with a random image from our preparated dataset by pressing the following Button.")
   if st.button('random picture'):
        Variable = [500, 910, 3273, 1863, 1566, 1386, 1355, 1824, 728, 3856, 1453, 763, 1876, 765, 2766, 3041, 3041, 2440, 2286, 4211, 4200, 4502, 4526, 1326, 4122, 1927, 2137, 473, 4489, 3947]
        y = randint(0, 29)
