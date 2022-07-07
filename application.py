@@ -123,7 +123,7 @@ def cleanse_data(data):
     return dict_2
 
 data2 = cleanse_data(data)
-print(len(data2))    ''')+
+print(len(data2))    ''')
   
   
   st.write("In our next step, we will create a dictionary to store the image files and their respective captions accordingly. We know that each image has an option of five different captions to choose from. We will define the .jpg image as the key with their five respective captions representing the values. We will split the values appropriately and store them in a dictionary. The following function can be written as follows:")
