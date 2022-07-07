@@ -60,10 +60,12 @@ max_length = 33
 
 
 def Image_Caption(picture):
-    in_text = 'startseq'
+   # in_text = 'startseq'
+    with st.spinner(text='This may take a moment...'):
+        caption = predict_step([picture])
     for i in range(max_length+10):
         sequence = [words_to_index[w] for w in in_text.split() if w in words_to_index]
-        sequence = pad_sequences([sequence], maxlen=max_length+10)
+        sequence = pad_sequences([sequence], maxlen=max_length)
         yhat = model.predict([picture,sequence], verbose=0)
         yhat = np.argmax(yhat)
         word = index_to_words[yhat]
