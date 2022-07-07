@@ -81,7 +81,7 @@ with st.expander("Introduction"):
 
   
   
-with st.expander("Data Understanding")
+with st.expander("Data Understanding"):
   st.subheader("About or data...")
   st.write("Our dataset consists of over 80000 images with at least 5 captions each, which are from the open-source dataset MS COCO and are randomly sorted. For the training we will not use the whole data set, because it has an enormous storage capacity.")
   st.text("")
