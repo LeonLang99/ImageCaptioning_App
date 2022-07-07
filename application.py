@@ -9,6 +9,10 @@ import pickle
 import requests, zipfile, io
 import os, shutil
 from random import *
+from model import predict_step     
+
+
+
 
 def Load_Images():
   r = requests.get("https://github.com/jbrownlee/Datasets/releases/download/Flickr8k/Flickr8k_Dataset.zip", stream=True)
@@ -309,7 +313,7 @@ with st.expander("Here you can try our Image Captoning Program"):
       
       
  
-from model import predict_step     
+
       
 def gen_caption(picture):
     st.image(picture)
