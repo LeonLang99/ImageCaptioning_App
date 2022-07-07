@@ -92,7 +92,7 @@ with st.expander("Data Understanding"):
   st.write("We will not be delimiting our dataset in specific domains, as our purpose is not image classification, but image captioning, so it’s in our best interests to vary the image topics, so that we call achieve a high accuracy.")
   
 with st.expander("Here you can try our Image Captoning Program"):
-  st.ballons()
+  st.balloons()
   st.write("Try it with a random image by pressing the following Button.")
   if st.button('random picture'):
        z = randint(1, 1000)
