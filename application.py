@@ -78,7 +78,8 @@ with st.expander("Introduction"):
   st.write("Hello, we are Leon Lang, Jean Louis Fichtner and Loredana Bratu and we created this app as a part of our business informatics course. On this page you will have the opportunity to see how we developed step by step this project, what was our motivation and is our future vision.")
   st.write("But before starting, we have a question:  What do you see in the picture bellow?")
   st.image("https://futalis.de/wp-content/uploads/2020/07/contentbild-hund-fital-1.jpg")
-  
+  st.write("Most probably you would say “A dog running on a field”, some may say “a dog with white and black spots” and others might say “a dog on a grass and some yellow flowers”. Definitely all of these captions are correct for this image and there may be some more as well. But the point we want to make is that it is so easy for us, as human beings, to just have a look at a picture and describe it in an appropriate language. But, can you write a computer program that takes an image as input and produces a relevant caption as output?")
+
 with st.expander("Solution"):
   st.header("Solution")
   st.write("Most probably you would say “A dog running on a field”, some may say “a dog with white and black spots” and others might say “a dog on a grass and some yellow flowers”.")
@@ -111,7 +112,70 @@ with st.expander("Data Understanding"):
   st.write("Therefore, in advantage of time and costs we only used ca. 8.000 pictures to train our data.")
   st.text("")
   st.write("We will not be delimiting our dataset in specific domains, as our purpose is not image classification, but image captioning, so it’s in our best interests to vary the image topics, so that we call achieve a high accuracy.")
-   
+
+  
+with st.expander("Data Preperation"):
+  st.header("Data Preperation")
+  
+  st.subheader("Data Cleaning")
+  st.write("Our next step is to proceed with further pre-processing of the dataset and prepare the captions data by making some necessary changes. We will make sure that all the words in each of the sentences are converted to a lower case because we don't want the same word to be stored as two separate vectors during the computation of the problem. We will also remove words with a length of less than two to make sure that we remove irrelevant characters such as single letters and punctuations. The function and the code for completing this task is written as follows:") 
+  st.code('''
+  
+# Cleanse and pre-process the data
+
+def cleanse_data(data):
+    dict_2 = dict()
+    for key, value in data.items():
+        for i in range(len(value)):
+            lines = ""
+            line1 = value[i]
+            for j in line1.split():
+                if len(j) < 2:
+                    continue
+                j = j.lower()
+                lines += j + " "
+            if key not in dict_2:
+                dict_2[key] = list()
+            
+            dict_2[key].append(lines)
+            
+    return dict_2
+
+data2 = cleanse_data(data)
+print(len(data2))    ''')
+  
+  
+  st.write("In our next step, we will create a dictionary to store the image files and their respective captions accordingly. We know that each image has an option of five different captions to choose from. We will define the .jpg image as the key with their five respective captions representing the values. We will split the values appropriately and store them in a dictionary. The following function can be written as follows:")
+  st.code(''' 
+
+def vocabulary(data2):
+    all_desc = set()
+    for key in data2.keys():
+        [all_desc.update(d.split()) for d in data2[key]]
+    return all_desc
+
+# summarize vocabulary
+vocabulary_data = vocabulary(data2)
+print(len(vocabulary_data)) ''')
+  st.subheader("Pre-Processing the Images")
+  st.write("Further we have used the Inception V3 transfer learning model to convert each of the respective images into their fixed vector size. The model makes use of the pre-trained weights on the image net to achieve the computation of the following task with relative ease. Once we finished the computation of pre-processing of the images, we have saved all these values in a pickle file that helped us to utilize these models separately during the prediction process. This process can be completed with the following code block:")
+  st.code('''
+images = 'Images/'
+img = glob(images + '*.jpg')
+print(len(img))
+
+def preprocess(image_path):
+    # Convert all the images to size 299x299 as expected by the inception v3 model
+    img = keras.preprocessing.image.load_img(image_path, target_size=(299, 299))
+    # Convert PIL image to numpy array of 3-dimensions
+    x = keras.preprocessing.image.img_to_array(img)
+    # Add one more dimension
+    x = np.expand_dims(x, axis=0)
+    # pre-process the images using preprocess_input() from inception module
+    x = keras.applications.inception_v3.preprocess_input(x)
+    return x
+  ''')
+  
 with st.expander("Data Modeling"):
   st.header("Data Modeling")
   st.write("The modeling technique we used is the CNN - Convolutional Neural Network within Deep Learning which is a type of artificial neural network that is widely used for image/object recognition and classification. The encoder-decoder architecture - where an input image is encoded into an intermediate representation of the information contained within the image and subsequently decoded into a descriptive text sequence - has also contributed to caption’s generation.")
@@ -214,14 +278,11 @@ def Image_Caption(picture):
   
 
     
-with st.expander("Our vision..."):    
-   st.subheader("What are our project objectives?")
-   st.write("Our main goal is our app to automatically generate captions, also known as textual descriptions, for random images. The dataset will be in the form [image → captions]. It will consist of input images and their corresponding output captions which have to be as precise as possible, but also short and concise. The caption generator will involve the dual techniques from computer vision - to first understand the content of the image, and a language model from the field of natural language processing to turn the understanding of the image into words in the right order and correct structure.")
-   st.subheader("Which problem do we want to solve?")
-   st.write("Image captioning can be used in lots of virtual domains such as for virtual assistants, picture recommendations, for image indexing, for social media, but also to explore the world around you, using only your phone's camera which scans a real object and tell someone what kind of object that is (for example Google Lens).")
-   st.subheader("About our data…")
-   st.write("Our dataset consists of X images which are randomly sorted. For the training we will not use the whole data set, because it has an enormous storage capacity (~ 240TB of data).Therefore, in advantage of time and costs we will use between 500-1000 pictures to train our data. We will delimit our data set to the topic 'public and urban ways of travel', as we think this is a suitable domain to start with when training your data.")
-  
+with st.expander("Evaluation"):    
+
+   st.write("Before proceeding to final deployment of the model, it is important to evaluate the model, and review the steps executed to construct the model, to be certain it properly achieves the business objectives. A key objective is to determine if there is some important business issue that has not been sufficiently considered.")
+   st.text("")
+   st.write("Model evaluation---True Positives/True Negatives---Accuracy ---Test Predictions---")
 with st.expander("Here you can try our Image Captoning Program"): 
   st.write("Try it with a random image by pressing the following Button.")
   if st.button('random picture'):
