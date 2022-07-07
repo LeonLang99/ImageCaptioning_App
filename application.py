@@ -97,8 +97,25 @@ with st.expander("Data Understanding"):
   ''')
 with st.expander("Data Preperation"):
   st.header("Data Preperation")
-  st.write("Before starting training our model, we have to be sure our data is clean, correct, consistent has no redundancies. For the image part we made sure that our pictures have the same scale and size, but also that there are not turned upside-down. As previously mentioned, we have to deal with text as well, that’s why we performed some basic cleaning like lower casing all the words, removed special symbols like (like %, §, &, # etc.) and eliminated words which contain numbers (like “girl2”).") 
- 
+  st.write("Our next step is to proceed with further pre-processing of the dataset and prepare the captions data by making some necessary changes. We will make sure that all the words in each of the sentences are converted to a lower case because we don't want the same word to be stored as two separate vectors during the computation of the problem. We will also remove words with a length of less than two to make sure that we remove irrelevant characters such as single letters and punctuations. The function and the code for completing this task is written as follows:") 
+  st.code('''
+  
+import tensorflow as tf
+from tensorflow import keras
+import matplotlib.pyplot as plt
+from tensorflow.keras.applications import InceptionV3
+from tensorflow.keras.models import Model
+from keras.preprocessing.sequence import pad_sequences
+from keras.utils import to_categorical
+import numpy as np
+from numpy import array
+import pandas as pd
+import cv2
+from glob import glob
+import PIL
+import time
+from tqdm import tqdm
+import os''')
   st.subheader("Data Cleaning")
   st.write("DataCleaningTextHere")
 with st.expander("Here you can try our Image Captoning Program"):
