@@ -122,8 +122,30 @@ def cleanse_data(data):
 
 data2 = cleanse_data(data)
 print(len(data2))    ''')
+  
+  
+  st.write("After storing the cleansed information in 'data2' ")
   st.subheader("Data Cleaning")
   st.write("DataCleaningTextHere")
+  
+  
+  
+with st.expander("Data Modeling")
+  st.header("Data Modeling")
+  St.write("The modeling technique we used is the CNN - Convolutional Neural Network within Deep Learning which is a type of artificial neural network that is widely used for image/object recognition and classification. The encoder-decoder architecture - where an input image is encoded into an intermediate representation of the information contained within the image and subsequently decoded into a descriptive text sequence - has also contributed to caption’s generation.")
+  
+  st.subheader("Model architecture")
+  st.code('''
+  ''')
+  st.subheader("Model training")
+  st.code('''
+  ''')
+  st.subheader("Model testing")
+  st.code('''
+  ''')
+  
+  
+  
 with st.expander("Here you can try our Image Captoning Program"):
  
   st.write("Try it with a random image by pressing the following Button.")
