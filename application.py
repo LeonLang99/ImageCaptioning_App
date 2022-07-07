@@ -275,11 +275,16 @@ def Image_Caption(picture):
   
 
 with st.expander("Evaluation"):    
-
+   st.subheader("Evaluation")
    st.write("Before proceeding to final deployment of the model, it is important to evaluate the model, and review the steps executed to construct the model, to be certain it properly achieves the business objectives. A key objective is to determine if there is some important business issue that has not been sufficiently considered.")
    st.text("")
-   st.write("Model evaluation---True Positives/True Negatives---Accuracy ---Test Predictions---")
-  
+   st.write("")
+   st.image("https://blog.forecast.it/hs-fs/hubfs/accuracy-precision.jpg?width=454&name=accuracy-precision.jpg&w=144")
+   st.write("Accuracy: The ability of a measurement device to match the actual value of the quantity being measured.")
+   st.write("Precision: The reproducibility of repeated measurements and a measure of their likely spread.")
+    
+    
+    
 with st.expander("Here you can try our Image Captoning Program"): 
   st.write("Try it with a random image by pressing the following Button.")
   if st.button('random picture'):
