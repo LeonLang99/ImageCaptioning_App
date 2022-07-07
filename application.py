@@ -74,17 +74,24 @@ def Image_Caption(picture):
 st.title('Image Captioning Group 13')
 
 with st.expander("Introduction"):
+  st.header("Introduction")
   st.write("Hello, we are Leon Lang, Jean Louis Fichtner and Loredana Bratu and we created this app as a part of our business informatics course. On this page you will have the opportunity to see how we developed step by step this project, what was our motivation and is our future vision.")
   st.write("But before starting, we have a question:  What do you see in the picture bellow?")
   st.image("https://futalis.de/wp-content/uploads/2020/07/contentbild-hund-fital-1.jpg")
   
 with st.expander("Solution"):
+  st.header("Solution")
   st.write("Most probably you would say “A dog running on a field”, some may say “a dog with white and black spots” and others might say “a dog on a grass and some yellow flowers”.")
   st.write("Definitely all of these captions are correct for this image and there may be some more as well. But the point we want to make is that it is so easy for us, as human beings, to just have a look at a picture and describe it in an appropriate language.")
   st.write("But, can you write a computer program that takes an image as input and produces a relevant caption as output?")
   st.image("https://img.freepik.com/premium-vector/cute-funny-think-emoji-smile-face-with-question-mark-vector-flat-line-doodle-cartoon-kawaii-character-illustration-icon-isolated-white-background-yellow-emoji-circle-think-character-concept_92289-3170.jpg")
   
-  
+with st.expander("Business Understanding"):
+  st.header("Business Understanding")
+  st.write("The upper question is what also determined us to analyse this problem and to develop a corresponding solution to it.")
+  st.write("Definitely all of these captions are correct for this image and there may be some more as well. But the point we want to make is that it is so easy for us, as human beings, to just have a look at a picture and describe it in an appropriate language.")
+  st.write("But, can you write a computer program that takes an image as input and produces a relevant caption as output?")
+  st.image("https://img.freepik.com/premium-vector/cute-funny-think-emoji-smile-face-with-question-mark-vector-flat-line-doodle-cartoon-kawaii-character-illustration-icon-isolated-white-background-yellow-emoji-circle-think-character-concept_92289-3170.jpg")
   
   
   
