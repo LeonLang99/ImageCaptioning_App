@@ -285,9 +285,9 @@ with st.expander("Here you can try our Image Captoning Program"):
   if st.button('random picture'):
        Variable = ["500", "910", "3273", "1863", "1566", "1386", "1355", "1824", "728", "3856", "1453", "763", "1876", "765", "2766", "3041", "3041", "2440", "2286", "4211", "4200", "4502", "4526", "1326", "4122", "1927", "2137", "473", "4489", "3947"]
        y = randint(0, 29)
-       sr.write(y)
+       st.write(y)
        z = Variable[y]
-       sr.write(z)
+       st.write(z)
        pic = list(features.keys())[z]
        image = features[pic].reshape((1,2048))
        x = plt.imread(images+pic)
