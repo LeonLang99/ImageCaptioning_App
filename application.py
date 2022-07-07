@@ -78,17 +78,7 @@ with st.expander("Introduction"):
   st.image("https://futalis.de/wp-content/uploads/2020/07/contentbild-hund-fital-1.jpg")
  #with st.expander("Possible solution")
   st.write("Most probably you would say “A dog running on a field”, some may say “a dog with white and black spots” and others might say “a dog on a grass and some yellow flowers”. Definitely all of these captions are correct for this image and there may be some more as well. But the point we want to make is that it is so easy for us, as human beings, to just have a look at a picture and describe it in an appropriate language. But, can you write a computer program that takes an image as input and produces a relevant caption as output?")
-with st.expander("The Mission"):
-  st.write("The purpose of our app is to automatically describe an image with one or more natural language sentences. To generate textual descriptions of images we will use Machine Learning and Deep Learning Techniques.")
-    
-with st.expander("Our vision..."):    
-   st.subheader("What are our project objectives?")
-   st.write("Our main goal is our app to automatically generate captions, also known as textual descriptions, for random images. The dataset will be in the form [image → captions]. It will consist of input images and their corresponding output captions which have to be as precise as possible, but also short and concise. The caption generator will involve the dual techniques from computer vision - to first understand the content of the image, and a language model from the field of natural language processing to turn the understanding of the image into words in the right order and correct structure.")
-   st.subheader("Which problem do we want to solve?")
-   st.write("Image captioning can be used in lots of virtual domains such as for virtual assistants, picture recommendations, for image indexing, for social media, but also to explore the world around you, using only your phone's camera which scans a real object and tell someone what kind of object that is (for example Google Lens).")
-   st.subheader("About our data…")
-   st.write("Our dataset consists of X images which are randomly sorted. For the training we will not use the whole data set, because it has an enormous storage capacity (~ 240TB of data).Therefore, in advantage of time and costs we will use between 500-1000 pictures to train our data. We will delimit our data set to the topic 'public and urban ways of travel', as we think this is a suitable domain to start with when training your data.")
-  
+
 with st.expander("Here you can try our Image Captoning Program"): 
   st.write("Try it with a random image by pressing the following Button.")
   if st.button('random picture'):
