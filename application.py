@@ -117,6 +117,7 @@ with st.expander("Data Modeling"):
   st.write("The modeling technique we used is the CNN - Convolutional Neural Network within Deep Learning which is a type of artificial neural network that is widely used for image/object recognition and classification. The encoder-decoder architecture - where an input image is encoded into an intermediate representation of the information contained within the image and subsequently decoded into a descriptive text sequence - has also contributed to caption’s generation.")
   
   st.subheader("Model architecture")
+  st.write("Finally, let us define the LSTM and embedding layers to create our model architecture. For this model, we will make use of two inputs, namely the image vectors and the word embeddings of the captions, for making the predictions. The embedding vector is passed through an LSTM architecture which will learn how to make the appropriate word predictions. The image vector and the LSTM predictions are combined together as one unit and passed through some dense layers and a SoftMax activation function, which is equivalent to the size of the pre-defined vocabulary. ")
   st.code(''' 
   embeddings_index = {} # empty dictionary
 f = open('glove.6B.200d.txt', encoding="utf-8")
@@ -142,12 +143,73 @@ for word, i in wordtoix.items():
         embedding_matrix[i] = embedding_vector
         
 embedding_matrix.shape
+
+inputs1 = Input(shape=(2048,))
+fe1 = Dropout(0.5)(inputs1)
+fe2 = Dense(256, activation='relu')(fe1)
+
+inputs2 = Input(shape=(max_length,))
+se1 = Embedding(vocab_size, embedding_dim, mask_zero=True)(inputs2)
+se2 = Dropout(0.5)(se1)
+se3 = LSTM(256)(se2)
+
+decoder1 = add([fe2, se3])
+decoder2 = Dense(256, activation='relu')(decoder1)
+outputs = Dense(vocab_size, activation='softmax')(decoder2)
+
+model = Model(inputs=[inputs1, inputs2], outputs=outputs)
+model.summary()
+
   ''')
   st.subheader("Model training")
+  st.write("We trained our Model over 35 Epochs and with 3 pics per bath. We used a categorical cross-entropy loss function and the Adam optimizer.")
   st.code('''
+  model.layers[2].set_weights([embedding_matrix])
+model.layers[2].trainable = False
+
+model.compile(loss='categorical_crossentropy', optimizer='adam')
+
+epochs = 35
+number_pics_per_bath = 3
+steps = len(data2)//number_pics_per_bath
+
+features = pickle.load(open("images1.pkl", "rb"))
+
+# https://stackoverflow.com/questions/58352326/running-the-tensorflow-2-0-code-gives-valueerror-tf-function-decorated-functio
+
+tf.config.run_functions_eagerly(True)
+
+for i in range(epochs):
+    generator = data_generator(data2, features, wordtoix, max_length, number_pics_per_bath)
+    model.fit(generator, epochs=1, steps_per_epoch=steps, verbose=1)
+    model.save('model_' + str(i) + '.h5')
   ''')
+  
   st.subheader("Model testing")
+  st.write("The respective function that will take in the images, load their vectors, create word embedding, and utilize the saved model for making the appropriate predictions.")
   st.code('''
+  features = pickle.load(open("images1.pkl", "rb"))
+model = load_model('model_9.h5')
+images = "Images/"
+max_length = 33
+words_to_index = pickle.load(open("words.pkl", "rb"))
+index_to_words = pickle.load(open("words1.pkl", "rb"))
+
+def Image_Caption(picture):
+    in_text = 'startseq'
+    for i in range(max_length):
+        sequence = [words_to_index[w] for w in in_text.split() if w in words_to_index]
+        sequence = pad_sequences([sequence], maxlen=max_length)
+        yhat = model.predict([picture,sequence], verbose=0)
+        yhat = np.argmax(yhat)
+        word = index_to_words[yhat]
+        in_text += ' ' + word
+        if word == 'endseq':
+            break
+    final = in_text.split()
+    final = final[1:-1]
+    final = ' '.join(final)
+    return final
   ''')  
   
 
