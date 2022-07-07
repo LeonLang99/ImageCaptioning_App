@@ -138,7 +138,25 @@ def vocabulary(data2):
 # summarize vocabulary
 vocabulary_data = vocabulary(data2)
 print(len(vocabulary_data)) ''')
-  
+  st.subheader("Pre-Processing the Images:
+  st.write("Further we have used the Inception V3 transfer learning model to convert each of the respective images into their fixed vector size. The model makes use of the pre-trained weights on the image net to achieve the computation of the following task with relative ease. Once we finished the computation of pre-processing of the images, we have saved all these values in a pickle file that helped us to utilize these models separately during the prediction process. This process can be completed with the following code block:
+")
+  st.code('''
+images = 'Images/'
+img = glob(images + '*.jpg')
+print(len(img))
+
+def preprocess(image_path):
+    # Convert all the images to size 299x299 as expected by the inception v3 model
+    img = keras.preprocessing.image.load_img(image_path, target_size=(299, 299))
+    # Convert PIL image to numpy array of 3-dimensions
+    x = keras.preprocessing.image.img_to_array(img)
+    # Add one more dimension
+    x = np.expand_dims(x, axis=0)
+    # pre-process the images using preprocess_input() from inception module
+    x = keras.applications.inception_v3.preprocess_input(x)
+    return x
+  ''')
   
   
 with st.expander("Data Modeling"):
@@ -169,3 +187,63 @@ with st.expander("Here you can try our Image Captoning Program"):
        st.image(x)
        st.write("Caption:", Image_Caption(image))
 
+               
+               
+               
+               
+               
+from transformers import VisionEncoderDecoderModel, ViTFeatureExtractor, AutoTokenizer
+import torch
+from PIL import Image
+
+model = VisionEncoderDecoderModel.from_pretrained("nlpconnect/vit-gpt2-image-captioning")
+feature_extractor = ViTFeatureExtractor.from_pretrained("nlpconnect/vit-gpt2-image-captioning")
+tokenizer = AutoTokenizer.from_pretrained("nlpconnect/vit-gpt2-image-captioning")
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model.to(device)
+
+
+
+max_length = 16
+num_beams = 4
+gen_kwargs = {"max_length": max_length, "num_beams": num_beams}
+def predict_step(image_paths):
+  images = []
+  for image_path in image_paths:
+    i_image = Image.open(image_path)
+    if i_image.mode != "RGB":
+      i_image = i_image.convert(mode="RGB")
+
+    images.append(i_image)
+
+  pixel_values = feature_extractor(images=images, return_tensors="pt").pixel_values
+  pixel_values = pixel_values.to(device)
+
+  output_ids = model.generate(pixel_values, **gen_kwargs)
+
+  preds = tokenizer.batch_decode(output_ids, skip_special_tokens=True)
+  preds = [pred.strip() for pred in preds]
+  return preds
+
+def gen_caption(picture):
+    st.image(picture)
+    st.subheader('Generated caption:')
+    with st.spinner(text='This may take a moment...'):
+        caption = predict_step([picture])
+    st.write(caption[0])
+
+    
+#user chooses between preuploaded picture or uploads one himself
+col1, col2, col3 = st.columns([0.5,1,0.5])
+           
+           
+if st.button("Get a picture from our dataset:"):
+  picture = '1200px-Almeida_Júnior_-_Saudade_(Longing)_-_Google_Art_Project.jpg'
+            #x = random.randint(0,500)
+            #picture = list(features.keys())[x]
+            #picture = features[pic].reshape((1,2048))
+            #picture = plt.imread(images + pic)
+  gen_caption(image)
+           
+           
