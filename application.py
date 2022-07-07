@@ -90,11 +90,22 @@ with st.expander("Data Understanding"):
   st.write("Therefore, in advantage of time and costs we only used ca. 8.000 pictures to train our data.")
   st.text("")
   st.write("We will not be delimiting our dataset in specific domains, as our purpose is not image classification, but image captioning, so it’s in our best interests to vary the image topics, so that we call achieve a high accuracy.")
+  st.code('''
   
+  #CODE LOUUULiiiLEIN
+  
+  ''')
+with st.expander("Data Preperation"):
+  st.header("Data Preperation")
+  st.subheader("About or data...") 
+  
+  st.subheader("Data Cleaning")
+  st.write("DataCleaningTextHere")
 with st.expander("Here you can try our Image Captoning Program"):
-  st.balloons()
+ 
   st.write("Try it with a random image by pressing the following Button.")
   if st.button('random picture'):
+       st.balloons()
        z = randint(1, 1000)
        pic = list(features.keys())[z]
        image = features[pic].reshape((1,2048))
