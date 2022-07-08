@@ -22,7 +22,7 @@ def Load_Images():
   
   
 features = pickle.load(open("images1.pkl", "rb"))
-model = load_model('model_9.h5')
+model = load_model('model_1.h5')
 words_to_index = pickle.load(open("words.pkl", "rb"))
 index_to_words = pickle.load(open("words1.pkl", "rb"))
   
@@ -276,7 +276,7 @@ for i in range(epochs):
   st.write("The respective function that will take in the images, load their vectors, create word embedding, and utilize the saved model for making the appropriate predictions.")
   st.code('''
   features = pickle.load(open("images1.pkl", "rb"))
-model = load_model('model_9.h5')
+model = load_model('model_1.h5')
 images = "Images/"
 max_length = 33
 words_to_index = pickle.load(open("words.pkl", "rb"))
