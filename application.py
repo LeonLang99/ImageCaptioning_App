@@ -116,7 +116,7 @@ with st.expander("Data Understanding"):
   st.write("Our dataset consists of over 80000 images with at least 5 captions each, which are from the open-source dataset MS COCO and are randomly sorted. For the training we will not use the whole data set, because it has an enormous storage capacity.")
   st.text("")
   st.code('''
- #input
+  #input
  data['1000268201_693b08cb0e']
   
  #output
