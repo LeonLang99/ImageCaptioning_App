@@ -117,7 +117,7 @@ with st.expander("Data Understanding"):
   st.text("")
   st.code('''
   #input
-  data['1000268201_693b08cb0e']")
+  data['1000268201_693b08cb0e']
   
   #output
   ['A child in a pink dress is climbing up a set of stairs in an entry way .',
