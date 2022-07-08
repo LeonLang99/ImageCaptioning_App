@@ -116,11 +116,11 @@ with st.expander("Data Understanding"):
   st.write("Our dataset consists of over 80000 images with at least 5 captions each, which are from the open-source dataset MS COCO and are randomly sorted. For the training we will not use the whole data set, because it has an enormous storage capacity.")
   st.text("")
   st.code('''
-  #input
-  data['1000268201_693b08cb0e']
+ #input
+ data['1000268201_693b08cb0e']
   
-  #output
-  ['A child in a pink dress is climbing up a set of stairs in an entry way .',
+ #output
+ ['A child in a pink dress is climbing up a set of stairs in an entry way .',
  'A girl going into a wooden building .',
  'A little girl climbing into a wooden playhouse .',
  'A little girl climbing the stairs to her playhouse .',
