@@ -9,10 +9,6 @@ import pickle
 import requests, zipfile, io
 import os, shutil
 from random import *
-  
-
-
-
 
 def Load_Images():
   r = requests.get("https://github.com/jbrownlee/Datasets/releases/download/Flickr8k/Flickr8k_Dataset.zip", stream=True)
@@ -22,7 +18,7 @@ def Load_Images():
   
   
 features = pickle.load(open("images1.pkl", "rb"))
-model = load_model('model_1.h5')
+model = load_model('model_9.h5')
 words_to_index = pickle.load(open("words.pkl", "rb"))
 index_to_words = pickle.load(open("words1.pkl", "rb"))
   
@@ -60,7 +56,7 @@ max_length = 33
 
 
 def Image_Caption(picture):
-    in_text = 'startseq'    
+    in_text = 'startseq'
     for i in range(max_length):
         sequence = [words_to_index[w] for w in in_text.split() if w in words_to_index]
         sequence = pad_sequences([sequence], maxlen=max_length)
@@ -68,8 +64,8 @@ def Image_Caption(picture):
         yhat = np.argmax(yhat)
         word = index_to_words[yhat]
         in_text += ' ' + word
-        #if word == 'endseq':
-         #   break
+        if word == 'endseq':
+            break
     final = in_text.split()
     final = final[1:-1]
     final = ' '.join(final)
@@ -79,14 +75,15 @@ st.title('Image Captioning Group 13')
 
 with st.expander("Introduction"):
   st.header("Introduction")
-  st.write("Hello, we are Leon Lang, Jean Louis Fichtner and Loredana Bratu and we created this app as a part of our business informatics course. On this page you will have the opportunity to see how we developed step by step this project, what was our motivation and is our future vision. But before starting, we have a question:  What do you see in the picture bellow?")
+  st.write("Hello, we are Leon Lang, Jean Louis Fichtner and Loredana Bratu and we created this app as a part of our business informatics course. On this page you will have the opportunity to see how we developed step by step this project, what was our motivation and is our future vision.")
+  st.write("But before starting, we have a question:  What do you see in the picture bellow?")
   st.image("https://futalis.de/wp-content/uploads/2020/07/contentbild-hund-fital-1.jpg")
- 
+  
 with st.expander("Solution"):
   st.header("Solution")
   st.write("Most probably you would say “A dog running on a field”, some may say “a dog with white and black spots” and others might say “a dog on a grass and some yellow flowers”.")
   st.write("Definitely all of these captions are correct for this image and there may be some more as well. But the point we want to make is that it is so easy for us, as human beings, to just have a look at a picture and describe it in an appropriate language.")
-  st.write("But, can you write a computer program that takes an image as input and produces a relevant caption as output?")
+  st.write("But, can you write a AI based computer program that takes an image as input and produces a relevant caption as output?")
   st.image("https://img.freepik.com/premium-vector/cute-funny-think-emoji-smile-face-with-question-mark-vector-flat-line-doodle-cartoon-kawaii-character-illustration-icon-isolated-white-background-yellow-emoji-circle-think-character-concept_92289-3170.jpg")
   
   
@@ -110,11 +107,11 @@ with st.expander("Business Understanding"):
   st.write("For a better overview and structure to our project, we followed the next steps:")
   st.image("https://files.gitbook.com/v0/b/gitbook-legacy-files/o/assets%2F-MUgl8cG7yNhLCPnDv5x%2F-MY4KgeUGKq9SC1IR8Kr%2F-MY4PAID8A_U-333h3JC%2Fimage.png?alt=media&token=1082c6fe-0617-41df-b8f5-d71552200417")
   
+
 with st.expander("Data Understanding"):
   st.header("Data Understanding")
   st.subheader("About or data...")
-  st.write("Our dataset consists of over 80000 images with at least 5 captions each, which are from the open-source dataset MS COCO and are randomly sorted. For the training we will not use the whole data set, because it has an enormous storage capacity.")
-  st.text("")
+  st.write("For Training we used the Flikr8k Dataset that consists of over 8000 images with 5 captions each, which are from the open-source dataset Flikr30k (30000 images). For the training we will not use the big data set, because it has an enormous storage capacity.")
   st.code('''
   #input
  data['1000268201_693b08cb0e']
@@ -130,16 +127,15 @@ with st.expander("Data Understanding"):
   st.write("Therefore, in advantage of time and costs we only used ca. 8.000 pictures to train our data.")
   st.text("")
   st.write("We will not be delimiting our dataset in specific domains, as our purpose is not image classification, but image captioning, so it’s in our best interests to vary the image topics, so that we call achieve a high accuracy.")
-  
+
 with st.expander("Data Preperation"):
   st.header("Data Preperation")
-  
+
   st.subheader("Data Cleaning")
   st.write("Our first step is to preprocess the dataset and prepare the captions by making some necessary changes. For example, we will make sure that all words are converted to lowercase, as we do not want the same word to be stored as two different vectors when computing the problem. We will also remove words less than two in length to ensure that we remove irrelevant characters such as single letters and punctuation marks. The function and code to solve this task are as follows:") 
   st.code('''
   
 # Cleanse and pre-process the data
-
 def cleanse_data(data):
     dict_2 = dict()
     for key, value in data.items():
@@ -157,20 +153,17 @@ def cleanse_data(data):
             dict_2[key].append(lines)
             
     return dict_2
-
 data2 = cleanse_data(data)
 print(len(data2))    ''')
-  
-  
+
+
   st.write("In our next step, we will create a dictionary to store the image files and their respective captions accordingly. We know that each image has an option of five different captions to choose from. We will define the .jpg image as the key with their five respective captions representing the values. We will split the values appropriately and store them in a dictionary. The following function can be written as follows:")
   st.code(''' 
-
 def vocabulary(data2):
     all_desc = set()
     for key in data2.keys():
         [all_desc.update(d.split()) for d in data2[key]]
     return all_desc
-
 # summarize vocabulary
 vocabulary_data = vocabulary(data2)
 print(len(vocabulary_data)) ''')
@@ -180,7 +173,6 @@ print(len(vocabulary_data)) ''')
 images = 'Images/'
 img = glob(images + '*.jpg')
 print(len(img))
-
 def preprocess(image_path):
     # Convert all the images to size 299x299 as expected by the inception v3 model
     img = keras.preprocessing.image.load_img(image_path, target_size=(299, 299))
@@ -194,9 +186,7 @@ def preprocess(image_path):
   ''')
   
   
-with st.expander("Data Modeling"):
-  st.header("Data Modeling")
-  st.write("The modeling technique we used is the CNN - Convolutional Neural Network within Deep Learning which is a type of artificial neural network that is widely used for image/object recognition and classification. The encoder-decoder architecture - where an input image is encoded into an intermediate representation of the information contained within the image and subsequently decoded into a descriptive text sequence - has also contributed to caption’s generation.")
+  
   
   
 with st.expander("Data Modeling"):
@@ -276,7 +266,7 @@ for i in range(epochs):
   st.write("The respective function that will take in the images, load their vectors, create word embedding, and utilize the saved model for making the appropriate predictions.")
   st.code('''
   features = pickle.load(open("images1.pkl", "rb"))
-model = load_model('model_1.h5')
+model = load_model('model_9.h5')
 images = "Images/"
 max_length = 33
 words_to_index = pickle.load(open("words.pkl", "rb"))
@@ -298,40 +288,29 @@ def Image_Caption(picture):
     final = ' '.join(final)
     return final
   ''')  
- 
   
+
 with st.expander("Evaluation"):    
    st.subheader("Evaluation")
    st.write("Before proceeding to final deployment of the model, it is important to evaluate the model, and review the steps executed to construct the model, to be certain it properly achieves the business objectives. A key objective is to determine if there is some important business issue that has not been sufficiently considered.")
    st.text("")
-   st.write("Model evaluation---True Positives/True Negatives---Accuracy ---Test Predictions---")
+   st.write("")
    st.image("https://blog.forecast.it/hs-fs/hubfs/accuracy-precision.jpg?width=454&name=accuracy-precision.jpg&w=144")
    st.write("Accuracy: The ability of a measurement device to match the actual value of the quantity being measured.")
    st.write("Precision: The reproducibility of repeated measurements and a measure of their likely spread.")
    st.subheader("Our Difficulties")
    st.write("We evaluated our program based on the Accuracy/Precision model and we came to the conclusion that our model achieved a high Precision, but a moderate Accuracy. In the majority of cases the app can easily recognize what is in the picture, but unfortunately it does not describe the picture sufficiently enough. We also noticed a few more problems: Sometimes the sentence is not ended or the last word is left out. In addition, it often has problems to tell colors or genders apart.")
     
-with st.expander("Here you can try our Image Captoning Program"):
-  st.subheader("Here you can try our Image Captoning Program")
-  st.write("Try it with a random image by pressing the following Button.")
+    
+    
+with st.expander("Our Image Captoning Program"): 
+  st.write("You can try our Program with a random image from our preparated dataset by pressing the following Button.")
   if st.button('random picture'):
-       
-       z = randint(1, 8000)
-       st.write(z)
+       Variable = [500, 910, 3273, 1863, 1566, 1386, 1355, 1824, 728, 3856, 1453, 763, 1876, 765, 2766, 3041, 3041, 2440, 2286, 4211, 4200, 4502, 4526, 1326, 4122, 1927, 2137, 473, 4489, 3947]
+       y = randint(0, 29)
+       z = Variable[y]
        pic = list(features.keys())[z]
        image = features[pic].reshape((1,2048))
        x = plt.imread(images+pic)
        st.image(x)
        st.write("Caption:", Image_Caption(image))
-
-      
-    
-      
-      
-      
-      
-      
-      
-      
- 
-    
