@@ -115,6 +115,18 @@ with st.expander("Data Understanding"):
   st.subheader("About or data...")
   st.write("Our dataset consists of over 80000 images with at least 5 captions each, which are from the open-source dataset MS COCO and are randomly sorted. For the training we will not use the whole data set, because it has an enormous storage capacity.")
   st.text("")
+  st.code('''
+  #input
+  data['1000268201_693b08cb0e']")
+  
+  #output
+  ['A child in a pink dress is climbing up a set of stairs in an entry way .',
+ 'A girl going into a wooden building .',
+ 'A little girl climbing into a wooden playhouse .',
+ 'A little girl climbing the stairs to her playhouse .',
+ 'A little girl in a pink dress going into a wooden cabin .']
+ 
+  ''')
   st.write("Therefore, in advantage of time and costs we only used ca. 8.000 pictures to train our data.")
   st.text("")
   st.write("We will not be delimiting our dataset in specific domains, as our purpose is not image classification, but image captioning, so it’s in our best interests to vary the image topics, so that we call achieve a high accuracy.")
